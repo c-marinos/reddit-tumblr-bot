@@ -25,5 +25,4 @@ class API(object):
                 returnPosts.append(post)
                 # mark as processed
                 self.alreadyProcessed.append(post.id)
-
         return returnPosts
