@@ -49,9 +49,12 @@ class Bot():
                 formattedPost['score'] = post.score
                 formattedPost['title'] = post.title
 
-                timeDiff = datetime.utcfromtimestamp(time.time() - post.created_utc).hour
-		minAge = config.get('reddit','minAge')
-		maxAge = config.get('reddit','maxAge')
+                timeDiff = datetime.fromtimestamp(time.time()) - datetime.utcfromtimestamp(post.created_utc)
+
+		tempMinAge = config.get('reddit','minAge')
+                minAge = int(tempMinAge) + 2 
+		tempMaxAge = config.get('reddit','maxAge')
+                maxAge = int(tempMaxAge) + 2
 		minScore = config.get('reddit','minScore')
 
                 if(timeDiff > int(minAge) and timeDiff < int(maxAge) and post.score > int(minScore)):
